@@ -17,25 +17,28 @@ import com.ipuppyp.minimal_video_dj.service.VlcVideoService;
 @Configuration
 @PropertySource("classpath:minimal-video-dj.properties")
 public class SpringConfigurationService {
-	
+
 	@Value("${video_files_path}")
 	private String videoFilesPath;
-	
+
 	@Value("${video_allowed_types}")
-	private String videoAllowedTypes; 
-	
+	private String videoAllowedTypes;
+
 	@Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-	
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 	@Bean
 	public VideoService videoService() {
-		return new VlcVideoService(Arrays.asList("-L", "-f", "--no-video-title-show", "--one-instance", "--directx-volume=-1"));
+		return new VlcVideoService(Arrays.asList("-L", "-f",
+				"--no-video-title-show", "--one-instance",
+				"--no-keyboard-events", "--disable-screensaver", "--no-mouse-events", "--directx-volume=-1"));
 	}
-	
+
 	@Bean
 	public FileService fileService() {
-		return new DefaultFileService(Paths.get(videoFilesPath), videoAllowedTypes);
+		return new DefaultFileService(Paths.get(videoFilesPath),
+				videoAllowedTypes);
 	}
 }

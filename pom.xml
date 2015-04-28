@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ipuppyp</groupId>
+	<artifactId>minimal-video-dj</artifactId>
+	<version>${app.version}</version>
+	<packaging>pom</packaging>
+
+	<name>minimal-video-dj</name>
+	<url>http://maven.apache.org</url>
+
+	<modules>
+		<module>minimal-video-dj-application</module>
+		<module>minimal-video-dj-swing</module>
+		<module>minimal-video-dj-service</module>
+	</modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<app.version>0.0.1-SNAPSHOT</app.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.ipuppyp</groupId>
+				<artifactId>minimal-video-dj-service</artifactId>
+				<version>${app.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ipuppyp</groupId>
+				<artifactId>minimal-video-dj-swing</artifactId>
+				<version>${app.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+</project>

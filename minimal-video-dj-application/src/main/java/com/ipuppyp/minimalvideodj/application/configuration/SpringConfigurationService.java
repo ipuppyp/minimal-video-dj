@@ -1,4 +1,4 @@
-package com.ipuppyp.minimal_video_dj.configuration;
+package com.ipuppyp.minimalvideodj.application.configuration;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-import com.ipuppyp.minimal_video_dj.service.DefaultFileService;
-import com.ipuppyp.minimal_video_dj.service.FileService;
-import com.ipuppyp.minimal_video_dj.service.VideoService;
-import com.ipuppyp.minimal_video_dj.service.VlcVideoService;
+import com.ipuppyp.minimalvideodj.service.DefaultFileService;
+import com.ipuppyp.minimalvideodj.service.FileService;
+import com.ipuppyp.minimalvideodj.service.VideoService;
+import com.ipuppyp.minimalvideodj.service.VlcVideoService;
 
 @Configuration
 @PropertySource("classpath:minimal-video-dj.properties")

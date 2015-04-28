@@ -1,4 +1,4 @@
-package com.ipuppyp.minimal_video_dj.service;
+package com.ipuppyp.minimalvideodj.service;
 
 import java.nio.file.Path;
 

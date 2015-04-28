@@ -1,4 +1,4 @@
-package com.ipuppyp.minimal_video_dj.exception;
+package com.ipuppyp.minimalvideodj.service.exception;
 
 public class VideoPlayerNotInstalledException extends RuntimeException {
 

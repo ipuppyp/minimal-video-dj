@@ -1,4 +1,4 @@
-package com.ipuppyp.minimal_video_dj.service;
+package com.ipuppyp.minimalvideodj.service;
 
 import static java.io.File.separator;
 
@@ -9,11 +9,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ipuppyp.minimal_video_dj.exception.CannotStartVideoException;
-import com.ipuppyp.minimal_video_dj.exception.VideoPlayerNotInstalledException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.ipuppyp.minimalvideodj.service.exception.CannotStartVideoException;
+import com.ipuppyp.minimalvideodj.service.exception.VideoPlayerNotInstalledException;
 
 public class VlcVideoService implements VideoService {
-
+	Logger LOGGER = LoggerFactory.getLogger(VlcVideoService.class);
+	
 	private final String vlcPath;
 	private final List<String> vlcOptions;
 
@@ -39,7 +43,10 @@ public class VlcVideoService implements VideoService {
 		command.add(fileName.toString());
 		ProcessBuilder pb = new ProcessBuilder(command);
 		try {
-			return pb.start();
+			LOGGER.debug("Starting video...");
+			Process process = pb.start();
+			LOGGER.debug("Video player started succesfully");
+			return process;
 		} catch (IOException e) {
 			throw new CannotStartVideoException(e.getMessage(), e);
 		}
@@ -48,8 +55,9 @@ public class VlcVideoService implements VideoService {
 
 	@Override
 	public void destroyVideo(Process process) {
+		LOGGER.debug("Destroying video...");
 		process.destroy();
-
+		LOGGER.debug("Video player destroyed succesfully");
 	}
 
 	private String guessVlcPath() {
@@ -60,6 +68,7 @@ public class VlcVideoService implements VideoService {
 		final String pathInProgramFiles32 = System.getenv("ProgramFiles") + " (x86)" + separator + vlcRelPath;
 
 		String path;
+		
 		if (Files.exists(Paths.get(pathInProgramFiles))) {
 			path = pathInProgramFiles;
 		} else if (Files.exists(Paths.get(pathInProgramFiles32))) {
@@ -67,6 +76,7 @@ public class VlcVideoService implements VideoService {
 		} else {
 			throw new VideoPlayerNotInstalledException("vlc.exe not found in" + pathInProgramFiles + " and " + pathInProgramFiles + ", please install it");
 		}
+		LOGGER.info("Guessed VLC path: {}", path);
 		return path;
 	}
 

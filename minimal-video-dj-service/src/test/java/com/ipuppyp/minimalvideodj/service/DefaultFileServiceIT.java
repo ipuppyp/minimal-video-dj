@@ -1,4 +1,4 @@
-package com.ipuppyp.minimal_video_dj.service;
+package com.ipuppyp.minimalvideodj.service;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.ipuppyp.minimalvideodj.service.DefaultFileService;
 
 public class DefaultFileServiceIT {
 

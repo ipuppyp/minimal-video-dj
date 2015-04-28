@@ -1,12 +1,12 @@
-package com.ipuppyp.minimal_video_dj.service;
+package com.ipuppyp.minimalvideodj.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.ipuppyp.minimal_video_dj.exception.CannotReadFolderException;
+import com.ipuppyp.minimalvideodj.service.exception.CannotReadFolderException;
 
 public class DefaultFileService implements FileService {
 	private final Path path;
@@ -24,9 +24,12 @@ public class DefaultFileService implements FileService {
 	}
 
 	@Override
-	public Stream<Path> getVideoFileList() {
+	public List<Path> getVideoFileList() {
 		try {
-			return Files.list(path).filter(t -> t.toString().matches(allowedTypes));
+			List<Path> videoFileList = new ArrayList<>();
+			Files.list(path).filter(t -> t.toString().matches(allowedTypes)).forEach(videoFileList::add);
+			return videoFileList;
+			
 		} catch (IOException e) {
 			throw new CannotReadFolderException(e.getMessage(), e);
 		}

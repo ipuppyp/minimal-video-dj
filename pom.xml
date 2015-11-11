@@ -14,11 +14,14 @@
 		<module>minimal-video-dj-service</module>
 		<module>minimal-video-dj-swing</module>
 		<module>minimal-video-dj-application</module>
+		<module>minimal-video-dj-web</module>
+		<module>minimal-video-dj-web2</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
+		<jstl.version>1.2</jstl.version>
 		<logback.version>1.1.1</logback.version>
 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
 		<junit.version>4.12</junit.version>
@@ -62,6 +65,16 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+					<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>

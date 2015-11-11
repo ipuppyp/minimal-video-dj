@@ -39,37 +39,26 @@ import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelWindowListener;
  *
  */
 public class VideoPanel extends JPanel {
-	private final VideoService videoService;
 	private final List<Path> fileList;
 	private final MessageSource messageSource;
 
-
+	JFrame frame;
 	private Process actualProcess;
 	
 	public VideoPanel(VideoService videoService, FileService fileService, MessageSource messageSource) throws UnsupportedLookAndFeelException, IOException {
 		super();
-		this.videoService = videoService;
 		fileList = fileService.getVideoFileList();
 		this.messageSource = messageSource;
-		initUI();
+		initUI(videoService);
 	}
 	
-	public void run() {
-		
-		JFrame f = new JFrame();
-        f.getContentPane().add(this);
-        f.setTitle(messageSource.getMessage("video_panel.title", null, null));
-        f.setIconImage(getDefaultToolkit().getImage(getClass().getResource(FRAME_ICON)));
-        
-        
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.addWindowListener(new VideoPanelWindowListener(this));
-		
-        f.pack();
-        f.setVisible(true);
+	public void run() {		
+		frame.setVisible(true);
 	}
 	
-	private void initUI() throws UnsupportedLookAndFeelException, IOException {
+	private void initUI(VideoService videoService) throws UnsupportedLookAndFeelException, IOException {
+
+        
 		UIManager.setLookAndFeel(new com.sun.java.swing.plaf.windows.WindowsLookAndFeel());
         setPreferredSize(new Dimension(700, 700));
         
@@ -77,7 +66,7 @@ public class VideoPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(new EmptyBorder(new Insets(40, 60, 40, 60)));
                 
-        addKeyListener(new VideoPanelKeyListener(this));
+        addKeyListener(new VideoPanelKeyListener(this, videoService));
         
         BufferedImage wPic = ImageIO.read(getClass().getResource(LOGO));
         JLabel wIcon = new JLabel(new ImageIcon(wPic));
@@ -86,22 +75,35 @@ public class VideoPanel extends JPanel {
         
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         for (int i = 0; i < fileList.size(); i ++) {
-        	addVideoButton(panel, fileList.get(i), i);
+        	addVideoButton(videoService, panel, fileList.get(i), i);
         }
 
         panel.add(Box.createRigidArea(new Dimension(0, 50)));
         JButton stopButton = new JButton(messageSource.getMessage("video_panel.stop", null, null) + " (X)");
-        stopButton.addActionListener(new VideoPanelButtonStopActionListener(this));
+        stopButton.addActionListener(new VideoPanelButtonStopActionListener(this, videoService));
         panel.add(stopButton);
         add(panel);
+        
+		frame = new JFrame();
+        frame.getContentPane().add(this);
+        frame.setTitle(messageSource.getMessage("video_panel.title", null, null));
+        frame.setIconImage(getDefaultToolkit().getImage(getClass().getResource(FRAME_ICON)));
+        
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new VideoPanelWindowListener(this, videoService));
+	
+        frame.pack();
+
+        
 	}
 
-	private void addVideoButton(JPanel panel, Path path, int index) {
+	private void addVideoButton(VideoService videoService, JPanel panel, Path path, int index) {
 		JPanel videoPanel = new JPanel();
 		String label = path.getFileName().toString() + " (" + HOTKEY_LIST.get(index) + ")";
 		videoPanel.add(new JLabel(label.toUpperCase()));
 		JButton videoButton = new JButton(messageSource.getMessage("video_panel.start", null, null));
-		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, path));
+		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, videoService, path));
 		videoPanel.add(videoButton);	
 		panel.add(videoPanel);
 	}
@@ -111,25 +113,25 @@ public class VideoPanel extends JPanel {
         requestFocus();
     }
 
+    
+
+	@Override
+	public void requestFocus() {
+		super.requestFocus();
+		frame.toFront();
+	}
+
 	public Process getActualProcess() {
 		return actualProcess;
+	}
+
+	public void setActualProcess(Process actualProcess) {
+		this.actualProcess = actualProcess;
 	}
 
 	public List<Path> getFileList() {
 		return Collections.unmodifiableList(fileList);
 	}
 	
-	public void destroyVideo() {
-		if (actualProcess !=  null) {
-			videoService.destroyVideo(actualProcess);
-			actualProcess = null;
-		}	
-		requestFocus();
-	}
-	
-	public void startVideo(Path path) {
-		destroyVideo();
-		actualProcess = videoService.startVideo(path);
-		requestFocus();
-	}
+
 }

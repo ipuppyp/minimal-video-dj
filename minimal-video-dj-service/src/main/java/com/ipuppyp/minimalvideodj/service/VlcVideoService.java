@@ -56,7 +56,12 @@ public class VlcVideoService implements VideoService {
 	@Override
 	public void destroyVideo(Process process) {
 		LOGGER.debug("Destroying video...");
-		process.destroy();
+		if (process == null) {
+			LOGGER.debug("Current process is null, can't destroy it.");
+		}
+		else {			
+			process.destroy();
+		}
 		LOGGER.debug("Video player destroyed succesfully");
 	}
 

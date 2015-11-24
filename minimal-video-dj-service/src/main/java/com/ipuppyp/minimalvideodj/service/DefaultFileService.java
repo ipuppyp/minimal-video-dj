@@ -35,6 +35,11 @@ public class DefaultFileService implements FileService {
 		}
 	}
 
+	@Override
+	public String getVideoFolderName() {
+		return path.toString();
+	}
+
 	
 	
 

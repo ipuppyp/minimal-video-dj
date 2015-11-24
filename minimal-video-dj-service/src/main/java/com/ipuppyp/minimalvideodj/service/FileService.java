@@ -6,4 +6,6 @@ import java.util.List;
 public interface FileService {
 
 	List<Path> getVideoFileList();
+	
+	String getVideoFolderName();
 }

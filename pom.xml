@@ -25,6 +25,7 @@
 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
 		<junit.version>4.12</junit.version>
 		<guava.version>18.0</guava.version>
+		<vlcj.version>3.9.0</vlcj.version>
 	</properties>
 
 
@@ -70,17 +71,21 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-					<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-		</dependency>
-				<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
-		
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>uk.co.caprica</groupId>
+				<artifactId>vlcj</artifactId>
+				<version>${vlcj.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>

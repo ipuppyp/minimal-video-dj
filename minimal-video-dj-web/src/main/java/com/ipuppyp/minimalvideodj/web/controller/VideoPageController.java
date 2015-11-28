@@ -1,12 +1,7 @@
 package com.ipuppyp.minimalvideodj.web.controller;
 
-import static com.google.common.io.Files.getNameWithoutExtension;
-import static java.io.File.pathSeparator;
-
-import java.nio.file.Path;
+import java.io.File;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,18 +27,11 @@ public class VideoPageController {
 	@RequestMapping("/")
 	public ModelAndView index(@RequestParam(value = "file", required = false) String file) {
 		if (file != null) {			
-			videoService.startVideo(Paths.get(fileService.getVideoFolderName() + "/" + file + ".mp4"));
+			videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));
 		}
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("fileList", getVideoFilenameList());
+		mv.addObject("fileList", fileService.getVideoFileList());
 		return mv;
 	}
 
-	private List<String> getVideoFilenameList() {
-		List<String> result = new ArrayList<>();
-		for (Path path : fileService.getVideoFileList()) {
-			result.add(getNameWithoutExtension(path.toString()).toUpperCase());
-		}
-		return result;
-	}
 }

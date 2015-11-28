@@ -4,18 +4,21 @@ import java.nio.file.Path;
 
 public class VlcjVideoService implements VideoService {
 
+	VlcjFrame vlcjFrame;
 	
+	public VlcjVideoService() {
+		vlcjFrame = new VlcjFrame();
+	}
 	
 	@Override
 	public Process startVideo(Path fileName) {
-		VlcjFrame.playMedia(fileName.toString());
+		vlcjFrame.startMedia(fileName);
 		return null;
 	}
 
 	@Override
 	public void destroyVideo(Process process) {
-		// TODO Auto-generated method stub
-		
+		vlcjFrame.stop();
 	}
 
 }

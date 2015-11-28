@@ -1,10 +1,11 @@
+<%@page import="java.nio.file.Path"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<jsp:useBean id="fileList" type="List<String>" scope="request" />
+<jsp:useBean id="fileList" type="List<Path>" scope="request" />
 
 
 <html>
@@ -37,9 +38,9 @@
 			<tbody>
 				<c:forEach items="${fileList}" var="file">
 					<tr>
-						<td>${file}</td>
+						<td>${file.fileName}</td>
 						<td><button class="btn btn-lg btn-success"
-							onclick="window.location.href='?file=${file}';">START</button></td>
+							onclick="window.location.href='?file=${file.fileName}';">START</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>

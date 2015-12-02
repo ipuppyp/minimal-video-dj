@@ -8,18 +8,16 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import com.google.common.base.Preconditions;
 import com.google.common.io.Files;
 
-public class FilenameWithoutExtensionTag extends SimpleTagSupport {
-	private String fileNameWithoutExtension;
+public class NormalizeFileNameTag extends SimpleTagSupport {
+	private String normalizedFileName;
 	
-
-
 	public void doTag() throws JspException, IOException {
-		getJspContext().getOut().print(fileNameWithoutExtension);
+		getJspContext().getOut().print(normalizedFileName);
 	}
 
 	public void setFileName(String fileName) {
 		Preconditions.checkNotNull(fileName);
-		this.fileNameWithoutExtension = Files.getNameWithoutExtension(fileName).toUpperCase();
+		this.normalizedFileName = fileName.replaceAll(" |\\.", "_");
 	}
 	
 }

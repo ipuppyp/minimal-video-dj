@@ -50,9 +50,9 @@
 								</span>
 							</h2>
 						</td>
-						<td><button class="btn btn-lg btn-info" id="<ex:filenameWithoutExtension fileName="${file.fileName}"/>"
+						<td><button class="btn btn-lg btn-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>"
 							onclick="startVideo('${file.fileName}',
-										'<ex:filenameWithoutExtension fileName="${file.fileName}"/>')">START</button></td>
+										'<ex:normalizeFileName fileName="${file.fileName}"/>')">START</button></td>
 					</tr>
 				</c:forEach>				
 			</tbody>

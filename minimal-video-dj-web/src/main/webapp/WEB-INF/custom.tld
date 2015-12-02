@@ -14,4 +14,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>normalizeFileName</name>
+		<tag-class>com.ipuppyp.minimalvideodj.web.tag.NormalizeFileNameTag
+		</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>fileName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

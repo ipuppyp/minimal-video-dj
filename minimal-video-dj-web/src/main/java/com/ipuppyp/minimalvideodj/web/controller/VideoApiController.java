@@ -35,7 +35,7 @@ public class VideoApiController {
 	public @ResponseBody StartVideoResponse startVideo(@RequestParam(value = "file", required = false) String file) {
 		StartVideoResponse response = new StartVideoResponse(); 
 		if (file != null) {			
-				videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));				
+				//videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));				
 				response.setMessage("Video started");
 		}
 		else {

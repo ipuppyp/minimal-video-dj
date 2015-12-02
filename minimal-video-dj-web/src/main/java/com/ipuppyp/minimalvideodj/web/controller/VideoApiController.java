@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +18,7 @@ import com.ipuppyp.minimalvideodj.service.VideoService;
 import com.ipuppyp.minimalvideodj.web.domain.StartVideoResponse;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VideoApiController {
 
 	private final FileService fileService;
@@ -25,27 +26,17 @@ public class VideoApiController {
 	
 	@Autowired
 	public VideoApiController( VideoService videoService, FileService fileService) {
-		this.fileService = fileService;
 		this.videoService = videoService;
+		this.fileService = fileService;
+		
 	}
 
-	
-	
-	@RequestMapping(value = "/start-video")
-    public String getAllEmployeesJSON(@RequestParam(value = "file", required = false) String file, Model model)
-    {
-		StartVideoResponse response = new StartVideoResponse();
-		response.setMessage("Video started"); 
-        model.addAttribute("employees", response);
-        return "jsonTemplate";
-    }
-	
-	@RequestMapping("/start-video2")
-	public StartVideoResponse startVideo(@RequestParam(value = "file", required = false) String file) {
+	@RequestMapping("/start-video")
+	public @ResponseBody StartVideoResponse startVideo(@RequestParam(value = "file", required = false) String file) {
 		StartVideoResponse response = new StartVideoResponse(); 
 		if (file != null) {			
-				//videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));				
-				response.setMessage("Video started"); 
+				videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));				
+				response.setMessage("Video started");
 		}
 		else {
 			response.setMessage("Please add a video name");

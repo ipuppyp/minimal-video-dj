@@ -3,24 +3,24 @@ package com.ipuppyp.minimalvideodj.web.controller;
 import java.io.File;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ipuppyp.minimalvideodj.service.FileService;
 import com.ipuppyp.minimalvideodj.service.VideoService;
-import com.ipuppyp.minimalvideodj.web.domain.StartVideoResponse;
+import com.ipuppyp.minimalvideodj.web.domain.GenericResponse;
 
 @RestController
 @RequestMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VideoApiController {
-
+	Logger LOGGER = LoggerFactory.getLogger(VideoApiController.class);
+	
 	private final FileService fileService;
 	private final VideoService videoService;
 	
@@ -32,14 +32,16 @@ public class VideoApiController {
 	}
 
 	@RequestMapping("/start-video")
-	public @ResponseBody StartVideoResponse startVideo(@RequestParam(value = "file", required = false) String file) {
-		StartVideoResponse response = new StartVideoResponse(); 
-		if (file != null) {			
-				//videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));				
-				response.setMessage("Video started");
+	public @ResponseBody GenericResponse startVideo(@RequestParam(value = "file") String file) {
+		GenericResponse response = new GenericResponse(); 
+		try {
+			
+			videoService.startVideo(Paths.get(fileService.getVideoFolderName() + File.separator + file));
+			response.setMessage("Started.");
 		}
-		else {
-			response.setMessage("Please add a video name");
+		catch (Exception ex) {
+			response.setMessage("Error: " + ex.getMessage());
+			LOGGER.error("Exception on starting video: ", ex);
 		}
 		return response;
 	}

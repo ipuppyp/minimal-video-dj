@@ -48,11 +48,15 @@
 								<span class="label label-default">
 									<ex:filenameWithoutExtension fileName="${file.fileName}"/>
 								</span>
+								&nbsp;<span class="label label-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>_message"></span>
 							</h2>
 						</td>
 						<td><button class="btn btn-lg btn-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>"
 							onclick="startVideo('${file.fileName}',
-										'<ex:normalizeFileName fileName="${file.fileName}"/>')">START</button></td>
+										'<ex:normalizeFileName fileName="${file.fileName}"/>',
+										'<c:url value="/rest/start-video"/>?file=${file.fileName}')">START</button>
+							
+							</td>
 					</tr>
 				</c:forEach>				
 			</tbody>
@@ -64,19 +68,9 @@
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-
-	<script>
-		function startVideo(fileName, id) {
-			$("button").removeClass("btn-danger");
-			$("button").removeClass("btn-warning");
-			$("#" + id).addClass("btn-warning");
-			$.ajax({
-				url : "<c:url value="/rest/start-video"/>?file=" + fileName
-			}).then(function(data) {
-				$("#" + id).addClass("btn-danger");
-			});
-		}
-	</script>
+	
+	<!-- My JS file -->
+	<script src="<c:url value="/js/minimal-video-dj.js"/>"></script>
 
 </body>
 

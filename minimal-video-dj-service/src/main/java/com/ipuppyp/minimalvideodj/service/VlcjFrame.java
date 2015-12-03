@@ -16,7 +16,7 @@ public class VlcjFrame {
 	private JFrame frame;
 	private EmbeddedMediaPlayer mediaPlayer;
 
-	static {
+	public VlcjFrame(){
 		new NativeDiscovery().discover();
 	}
 

@@ -1,6 +1,6 @@
 package com.ipuppyp.minimalvideodj.web.domain;
 
-public class StartVideoResponse {
+public class GenericResponse {
 
 	private String message;
 

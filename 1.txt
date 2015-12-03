@@ -1,0 +1,38 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.3.0.RELEASE)
+
+2015-12-03 22:46:43.596  INFO 7204 --- [           main] c.i.minimalvideodj.web.Application       : Starting Application on EPHUBUDW0657 with PID 7204 (started by Peter_Veres2 in D:\workspaces\minimal-video-dj\minimal-video-dj)
+2015-12-03 22:46:43.601  INFO 7204 --- [           main] c.i.minimalvideodj.web.Application       : No profiles are active
+2015-12-03 22:46:43.731  INFO 7204 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@228ebc77: startup date [Thu Dec 03 22:46:43 CET 2015]; root of context hierarchy
+2015-12-03 22:46:44.569  WARN 7204 --- [           main] .i.s.PathMatchingResourcePatternResolver : Skipping [D:\workspaces\minimal-video-dj\minimal-video-dj\minimal-video-dj-web\target\mv-dj.war] because it does not denote a directory
+2015-12-03 22:46:47.215  INFO 7204 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 80 (http)
+2015-12-03 22:46:47.249  INFO 7204 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2015-12-03 22:46:47.251  INFO 7204 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.28
+2015-12-03 22:46:49.693  INFO 7204 --- [ost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2015-12-03 22:46:50.354  INFO 7204 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2015-12-03 22:46:50.355  INFO 7204 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6630 ms
+2015-12-03 22:46:50.582  INFO 7204 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2015-12-03 22:46:50.591  INFO 7204 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2015-12-03 22:46:50.736  INFO 7204 --- [           main] uk.co.caprica.vlcj.Info                  : vlcj: 3.9.0
+2015-12-03 22:46:50.740  INFO 7204 --- [           main] uk.co.caprica.vlcj.Info                  : java: 1.8.0_65 Oracle Corporation
+2015-12-03 22:46:50.740  INFO 7204 --- [           main] uk.co.caprica.vlcj.Info                  : java home: C:\jdk1.8.0_65\jre
+2015-12-03 22:46:50.740  INFO 7204 --- [           main] uk.co.caprica.vlcj.Info                  : os: Windows 8.1 6.3 amd64
+2015-12-03 22:46:50.927  INFO 7204 --- [           main] u.c.c.vlcj.discovery.NativeDiscovery     : Discovery found libvlc at 'C:\Program Files (x86)\VideoLAN\VLC'
+2015-12-03 22:46:51.267  INFO 7204 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rest/start-video],produces=[application/json]}" onto public com.ipuppyp.minimalvideodj.web.domain.StartVideoResponse com.ipuppyp.minimalvideodj.web.controller.VideoApiController.startVideo(java.lang.String)
+2015-12-03 22:46:51.269  INFO 7204 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public org.springframework.web.servlet.ModelAndView com.ipuppyp.minimalvideodj.web.controller.VideoPageController.index(java.lang.String)
+2015-12-03 22:46:51.283  INFO 7204 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2015-12-03 22:46:51.284  INFO 7204 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest)
+2015-12-03 22:46:51.350  INFO 7204 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler]
+2015-12-03 22:46:51.518  INFO 7204 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@228ebc77: startup date [Thu Dec 03 22:46:43 CET 2015]; root of context hierarchy
+2015-12-03 22:46:52.044  INFO 7204 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2015-12-03 22:46:52.200  INFO 7204 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 80 (http)
+2015-12-03 22:46:52.207  INFO 7204 --- [           main] c.i.minimalvideodj.web.Application       : Started Application in 9.338 seconds (JVM running for 10.165)
+2015-12-03 22:46:58.898  INFO 7204 --- [p-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2015-12-03 22:46:58.898  INFO 7204 --- [p-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2015-12-03 22:46:58.931  INFO 7204 --- [p-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 32 ms

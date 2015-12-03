@@ -29,40 +29,22 @@
 
 </head>
 <body>
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th colspan="2">
-						<h1><span class="label label-primary">Video list</span>
-						</h1>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
+<div class="table-responsive">
+  <table class="table">
 				<c:forEach items="${fileList}" var="file">
-					<tr>
-					
-						<td>
-							<h2>
-								<span class="label label-default">
-									<ex:filenameWithoutExtension fileName="${file.fileName}"/>
-								</span>
-								&nbsp;<span class="label label-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>_message"></span>
-							</h2>
-						</td>
-						<td><button class="btn btn-lg btn-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>"
-							onclick="startVideo('${file.fileName}',
-										'<ex:normalizeFileName fileName="${file.fileName}"/>',
-										'<c:url value="/rest/start-video"/>?file=${file.fileName}')">START</button>
-							
-							</td>
-					</tr>
+				<tr><td align="center">
+				<button class="btn btn-lg btn-primary" id="<ex:normalizeFileName fileName="${file.fileName}"/>"
+					onclick="startVideo('${file.fileName}',
+								'<ex:normalizeFileName fileName="${file.fileName}"/>',
+								'<c:url value="/rest/start-video"/>?file=${file.fileName}')">
+						<ex:filenameWithoutExtension fileName="${file.fileName}"/>
+				</button>
+				<span class="label label-info" id="<ex:normalizeFileName fileName="${file.fileName}"/>_message"></span>
+				</td>
+				</tr>
 				</c:forEach>				
-			</tbody>
-		</table>
-	</div>
-
+</table>
+</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<c:url value="/js/jquery.min.js"/>"></script>
 

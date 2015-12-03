@@ -4,11 +4,15 @@ function startVideo(fileName, id, url) {
 	$("#" + id).addClass("btn-warning");
 	$.ajax({
 		url : url, success: function(result){
-			$("#" + id).addClass("btn-danger");
+			$("#" + id).removeClass("btn-warning");
+			$("#" + id).removeClass("btn-primary");
+			$("#" + id).addClass("btn-success");
 			$("#" + id + "_message").html(result.message);
 			setTimeout(function(){
 				$("#" + id + "_message").html("");
-			}, 2000);
+				$("#" + id).removeClass("btn-success");
+				$("#" + id).addClass("btn-primary");
+			}, 4000);
 			
 	    }});
 }

@@ -14,7 +14,7 @@ public class VideoPanelButtonStopActionListener extends AbstractVideoPanelListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		videoService.destroyVideo(videoPanel.getActualProcess());
+		videoService.stopVideo();
 	}
 	
 	

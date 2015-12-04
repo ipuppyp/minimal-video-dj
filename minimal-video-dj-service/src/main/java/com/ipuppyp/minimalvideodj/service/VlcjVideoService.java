@@ -11,13 +11,12 @@ public class VlcjVideoService implements VideoService {
 	}
 	
 	@Override
-	public Process startVideo(Path fileName) {
+	public void startVideo(Path fileName) {
 		vlcjFrame.startMedia(fileName);
-		return null;
 	}
 
 	@Override
-	public void destroyVideo(Process process) {
+	public void stopVideo() {
 		vlcjFrame.stop();
 	}
 

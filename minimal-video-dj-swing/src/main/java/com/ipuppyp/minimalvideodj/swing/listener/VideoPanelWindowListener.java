@@ -19,7 +19,7 @@ public class VideoPanelWindowListener extends AbstractVideoPanelListener impleme
 
 	@Override
 	public void windowClosing(WindowEvent e) {		
-		videoService.destroyVideo(videoPanel.getActualProcess());
+		videoService.stopVideo();
 	}
 
 	@Override

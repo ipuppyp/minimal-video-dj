@@ -1,0 +1,1 @@
+java -jar minimal-video-dj-web/target/mv-dj.war

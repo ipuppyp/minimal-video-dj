@@ -17,15 +17,13 @@ public abstract class AbstractVideoPanelListener {
 		this.videoService = videoService;
 	}
 
-	public void destroyVideo() {
-		videoService.destroyVideo(videoPanel.getActualProcess());
-		videoPanel.setActualProcess(null);
+	public void stopVideo() {
+		videoService.stopVideo();
 		videoPanel.requestFocus();
 	}
 
 	public void startVideo(Path path) {
-		destroyVideo();
-		videoPanel.setActualProcess(videoService.startVideo(path));
+		stopVideo();
 		videoPanel.requestFocus();
 	}
 

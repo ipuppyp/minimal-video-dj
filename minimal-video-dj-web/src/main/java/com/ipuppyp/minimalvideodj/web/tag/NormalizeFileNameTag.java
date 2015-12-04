@@ -6,7 +6,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.google.common.base.Preconditions;
-import com.google.common.io.Files;
 
 public class NormalizeFileNameTag extends SimpleTagSupport {
 	private String normalizedFileName;

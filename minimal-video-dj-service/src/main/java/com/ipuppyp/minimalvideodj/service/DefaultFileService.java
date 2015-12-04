@@ -6,28 +6,27 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ipuppyp.minimalvideodj.service.exception.CannotReadFolderException;
 
 public class DefaultFileService implements FileService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultFileService.class);
 	private final Path path;
-	private final String allowedTypes;
+	private final static String ALLOWED_TYPES = "^.*\\.(mp4|avi)$";
 	
-	/**
-	 * 
-	 * @param path
-	 * @param allowedTypes example: <pre>^.*\\.(mp4|avi)$</pre>
-	 */
-	public DefaultFileService(Path path, String allowedTypes) {
+	public DefaultFileService(Path path) {
 		super();
 		this.path = path;
-		this.allowedTypes = allowedTypes;
+		LOGGER.info("Video path is set to {}", path);
 	}
 
 	@Override
 	public List<Path> getVideoFileList() {
 		try {
 			List<Path> videoFileList = new ArrayList<>();
-			Files.list(path).filter(t -> t.toString().matches(allowedTypes)).forEach(videoFileList::add);
+			Files.list(path).filter(t -> t.toString().matches(ALLOWED_TYPES)).forEach(videoFileList::add);
 			return videoFileList;
 			
 		} catch (IOException e) {
@@ -39,8 +38,4 @@ public class DefaultFileService implements FileService {
 	public String getVideoFolderName() {
 		return path.toString();
 	}
-
-	
-	
-
 }

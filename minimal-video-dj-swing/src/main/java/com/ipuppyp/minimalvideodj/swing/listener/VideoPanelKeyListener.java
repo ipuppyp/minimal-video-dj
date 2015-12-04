@@ -4,7 +4,6 @@ import static com.ipuppyp.minimalvideodj.swing.panel.HotKeyList.HOTKEY_LIST;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.nio.file.Path;
 
 import com.ipuppyp.minimalvideodj.service.VideoService;
 import com.ipuppyp.minimalvideodj.swing.panel.HotKeyList;
@@ -28,11 +27,11 @@ public class VideoPanelKeyListener extends AbstractVideoPanelListener implements
 	public void keyPressed(KeyEvent e) {
 		char c = e.getKeyChar();
 		if (c == HotKeyList.HOTKEY_EXIT) {
-			videoService.destroyVideo(videoPanel.getActualProcess());
+			videoService.stopVideo();
 		} else {
 			int i = HOTKEY_LIST.indexOf(e.getKeyChar());
 			if (i >= 0 && i < videoPanel.getFileList().size()) {
-				videoPanel.setActualProcess(videoService.startVideo(videoPanel.getFileList().get(i)));
+				videoService.startVideo(videoPanel.getFileList().get(i));
 			}
 		}
 	}

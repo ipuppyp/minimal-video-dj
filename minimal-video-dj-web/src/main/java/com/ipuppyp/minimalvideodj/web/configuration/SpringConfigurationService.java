@@ -20,9 +20,6 @@ public class SpringConfigurationService {
 	@Value("${video_files_path}")
 	private String videoFilesPath;
 
-	@Value("${video_allowed_types}")
-	private String videoAllowedTypes;
-
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -36,7 +33,6 @@ public class SpringConfigurationService {
 	
 	@Bean
 	public FileService fileService() {
-		return new DefaultFileService(Paths.get(videoFilesPath),
-				videoAllowedTypes);
+		return new DefaultFileService(Paths.get(videoFilesPath));
 	}
 }

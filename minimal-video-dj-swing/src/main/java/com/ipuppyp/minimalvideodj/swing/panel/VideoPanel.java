@@ -34,16 +34,13 @@ import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelButtonStopActionListe
 import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelKeyListener;
 import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelWindowListener;
 
-/**
- * Hello world!
- *
- */
 public class VideoPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private final List<Path> fileList;
 	private final MessageSource messageSource;
 
 	JFrame frame;
-	private Process actualProcess;
 	
 	public VideoPanel(VideoService videoService, FileService fileService, MessageSource messageSource) throws UnsupportedLookAndFeelException, IOException {
 		super();
@@ -56,6 +53,7 @@ public class VideoPanel extends JPanel {
 		frame.setVisible(true);
 	}
 	
+	@SuppressWarnings("restriction")
 	private void initUI(VideoService videoService) throws UnsupportedLookAndFeelException, IOException {
 
         
@@ -103,7 +101,7 @@ public class VideoPanel extends JPanel {
 		String label = path.getFileName().toString() + " (" + HOTKEY_LIST.get(index) + ")";
 		videoPanel.add(new JLabel(label.toUpperCase()));
 		JButton videoButton = new JButton(messageSource.getMessage("video_panel.start", null, null));
-		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, videoService, path));
+		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, videoService));
 		videoPanel.add(videoButton);	
 		panel.add(videoPanel);
 	}
@@ -119,14 +117,6 @@ public class VideoPanel extends JPanel {
 	public void requestFocus() {
 		super.requestFocus();
 		frame.toFront();
-	}
-
-	public Process getActualProcess() {
-		return actualProcess;
-	}
-
-	public void setActualProcess(Process actualProcess) {
-		this.actualProcess = actualProcess;
 	}
 
 	public List<Path> getFileList() {

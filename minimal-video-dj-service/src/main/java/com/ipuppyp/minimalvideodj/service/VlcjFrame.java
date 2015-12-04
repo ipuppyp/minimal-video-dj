@@ -5,7 +5,6 @@ import java.awt.event.WindowEvent;
 import java.nio.file.Path;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
@@ -21,15 +20,10 @@ public class VlcjFrame {
 	}
 
 	public void startMedia(Path file) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
 				if (frame == null || !frame.isVisible()) {
 					init();
 				}
 				mediaPlayer.startMedia(file.toString());
-			}
-		});
 	}
 
 	public void stop() {

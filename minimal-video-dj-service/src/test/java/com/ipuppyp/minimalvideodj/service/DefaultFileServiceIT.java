@@ -17,8 +17,7 @@ public class DefaultFileServiceIT {
 	public void setUp() throws URISyntaxException {
 		
 		URL fileURL = getClass().getResource("/video_samples");
-		String allowedTypes = "^.*\\.(mp4|avi)$";
-		underTest = new DefaultFileService(Paths.get(fileURL.toURI()), allowedTypes);
+		underTest = new DefaultFileService(Paths.get(fileURL.toURI()));
 	}
 	
 	@Test

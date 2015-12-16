@@ -2,23 +2,22 @@ package com.ipuppyp.minimalvideodj.swing.listener;
 
 import java.nio.file.Path;
 
-import com.ipuppyp.minimalvideodj.service.VideoService;
+import org.minimal.video.dj.facade.MinimalVideoDjFacade;
+
 import com.ipuppyp.minimalvideodj.swing.panel.VideoPanel;
 
 public abstract class AbstractVideoPanelListener {
 
 	protected final VideoPanel videoPanel;
-	protected final VideoService videoService;
+	protected final MinimalVideoDjFacade facade;
 
-	public AbstractVideoPanelListener(VideoPanel videoPanel,
-			VideoService videoService) {
+	public AbstractVideoPanelListener(VideoPanel videoPanel, MinimalVideoDjFacade facade) {
 		super();
 		this.videoPanel = videoPanel;
-		this.videoService = videoService;
+		this.facade = facade;
 	}
-
 	public void stopVideo() {
-		videoService.stopVideo();
+		facade.stopVideo();
 		videoPanel.requestFocus();
 	}
 

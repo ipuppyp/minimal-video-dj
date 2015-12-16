@@ -3,13 +3,14 @@ package com.ipuppyp.minimalvideodj.swing.listener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import com.ipuppyp.minimalvideodj.service.VideoService;
+import org.minimal.video.dj.facade.MinimalVideoDjFacade;
+
 import com.ipuppyp.minimalvideodj.swing.panel.VideoPanel;
 
 public class VideoPanelWindowListener extends AbstractVideoPanelListener implements WindowListener {
 
-	public VideoPanelWindowListener(VideoPanel videoPanel, VideoService videoService) {
-		super(videoPanel,videoService);
+	public VideoPanelWindowListener(VideoPanel videoPanel, MinimalVideoDjFacade facade) {
+		super(videoPanel,facade);
 	}
 
 	@Override
@@ -19,7 +20,7 @@ public class VideoPanelWindowListener extends AbstractVideoPanelListener impleme
 
 	@Override
 	public void windowClosing(WindowEvent e) {		
-		videoService.stopVideo();
+		facade.stopVideo();
 	}
 
 	@Override

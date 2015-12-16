@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,10 +24,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
+import org.minimal.video.dj.facade.MinimalVideoDjFacade;
 import org.springframework.context.MessageSource;
 
-import com.ipuppyp.minimalvideodj.service.FileService;
-import com.ipuppyp.minimalvideodj.service.VideoService;
 import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelButtonStartActionListener;
 import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelButtonStopActionListener;
 import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelKeyListener;
@@ -37,16 +35,16 @@ import com.ipuppyp.minimalvideodj.swing.listener.VideoPanelWindowListener;
 public class VideoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private final List<Path> fileList;
+	private final List<String> fileList;
 	private final MessageSource messageSource;
 
 	JFrame frame;
 	
-	public VideoPanel(VideoService videoService, FileService fileService, MessageSource messageSource) throws UnsupportedLookAndFeelException, IOException {
+	public VideoPanel(MinimalVideoDjFacade facade, MessageSource messageSource) throws UnsupportedLookAndFeelException, IOException {
 		super();
-		fileList = fileService.getVideoFileList();
+		fileList = facade.getVideoFileList().getVideoFileList();
 		this.messageSource = messageSource;
-		initUI(videoService);
+		initUI(facade);
 	}
 	
 	public void run() {		
@@ -54,7 +52,7 @@ public class VideoPanel extends JPanel {
 	}
 	
 	@SuppressWarnings("restriction")
-	private void initUI(VideoService videoService) throws UnsupportedLookAndFeelException, IOException {
+	private void initUI(MinimalVideoDjFacade facade) throws UnsupportedLookAndFeelException, IOException {
 
         
 		UIManager.setLookAndFeel(new com.sun.java.swing.plaf.windows.WindowsLookAndFeel());
@@ -64,7 +62,7 @@ public class VideoPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(new EmptyBorder(new Insets(40, 60, 40, 60)));
                 
-        addKeyListener(new VideoPanelKeyListener(this, videoService));
+        addKeyListener(new VideoPanelKeyListener(this, facade));
         
         BufferedImage wPic = ImageIO.read(getClass().getResource(LOGO));
         JLabel wIcon = new JLabel(new ImageIcon(wPic));
@@ -73,12 +71,12 @@ public class VideoPanel extends JPanel {
         
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         for (int i = 0; i < fileList.size(); i ++) {
-        	addVideoButton(videoService, panel, fileList.get(i), i);
+        	addVideoButton(facade, panel, fileList.get(i), i);
         }
 
         panel.add(Box.createRigidArea(new Dimension(0, 50)));
         JButton stopButton = new JButton(messageSource.getMessage("video_panel.stop", null, null) + " (X)");
-        stopButton.addActionListener(new VideoPanelButtonStopActionListener(this, videoService));
+        stopButton.addActionListener(new VideoPanelButtonStopActionListener(this, facade));
         panel.add(stopButton);
         add(panel);
         
@@ -89,19 +87,19 @@ public class VideoPanel extends JPanel {
         
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addWindowListener(new VideoPanelWindowListener(this, videoService));
+        frame.addWindowListener(new VideoPanelWindowListener(this, facade));
 	
         frame.pack();
 
         
 	}
 
-	private void addVideoButton(VideoService videoService, JPanel panel, Path path, int index) {
+	private void addVideoButton(MinimalVideoDjFacade facade, JPanel panel, String file, int index) {
 		JPanel videoPanel = new JPanel();
-		String label = path.getFileName().toString() + " (" + HOTKEY_LIST.get(index) + ")";
+		String label = file + " (" + HOTKEY_LIST.get(index) + ")";
 		videoPanel.add(new JLabel(label.toUpperCase()));
 		JButton videoButton = new JButton(messageSource.getMessage("video_panel.start", null, null));
-		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, videoService));
+		videoButton.addActionListener(new VideoPanelButtonStartActionListener(this, facade));
 		videoPanel.add(videoButton);	
 		panel.add(videoPanel);
 	}
@@ -119,7 +117,7 @@ public class VideoPanel extends JPanel {
 		frame.toFront();
 	}
 
-	public List<Path> getFileList() {
+	public List<String> getFileList() {
 		return Collections.unmodifiableList(fileList);
 	}
 	

@@ -1,6 +1,6 @@
-package com.ipuppyp.minimalvideodj.web.domain;
+package org.minimal.video.dj.domain;
 
-public class GenericResponse {
+public class SimpleMessageResponse {
 
 	private String message;
 

@@ -15,7 +15,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.ipuppyp</groupId>
-			<artifactId>minimal-video-dj-service</artifactId>
+			<artifactId>minimal-video-dj-facade</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>

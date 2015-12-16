@@ -1,3 +1,20 @@
+$(document).ready(function() {
+    $.ajax({
+        url: "rest/get-video-file-list"
+    }).then(function(data) {
+    	var videoFileList = [];
+    	for (var i in data.videoFileList) {
+    		videoFileList.push({"videoFile" : data.videoFileList[i]});
+    	}
+    	$("#tbody").jPut({
+    	    jsonData:videoFileList,
+    	    name:"tbody_template",
+    	});
+    	
+    });
+});
+
+
 function startVideo(fileName, id, url) {
 	$("button").removeClass("btn-danger");
 	$("button").removeClass("btn-warning");

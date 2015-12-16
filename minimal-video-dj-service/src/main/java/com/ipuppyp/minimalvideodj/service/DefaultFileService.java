@@ -15,7 +15,7 @@ public class DefaultFileService implements FileService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultFileService.class);
 	private final Path path;
 	private final static String ALLOWED_TYPES = "^.*\\.(mp4|avi)$";
-	
+
 	public DefaultFileService(Path path) {
 		super();
 		this.path = path;
@@ -23,12 +23,13 @@ public class DefaultFileService implements FileService {
 	}
 
 	@Override
-	public List<Path> getVideoFileList() {
+	public List<String> getVideoFileList() {
 		try {
-			List<Path> videoFileList = new ArrayList<>();
-			Files.list(path).filter(t -> t.toString().matches(ALLOWED_TYPES)).forEach(videoFileList::add);
+			List<String> videoFileList = new ArrayList<>();
+			Files.list(path)
+				.filter(t -> t.toString().matches(ALLOWED_TYPES))
+					.forEach(filePath -> videoFileList.add(filePath.getFileName().toString()));
 			return videoFileList;
-			
 		} catch (IOException e) {
 			throw new CannotReadFolderException(e.getMessage(), e);
 		}

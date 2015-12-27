@@ -21,52 +21,30 @@
 
 </head>
 <body>
-<div class="table-responsive">
-  <table class="table">
-				
-				<tr><td align="center">
-				<button class="btn btn-lg btn-primary" id="id1"
-					onclick="startVideo('1.mp4','1', 'rest/start-video?file=1.mp4')">
-				ASDF</button>
-				<span class="label label-info" id="message"></span>
-				<p class="test123s" id="test">Hi</p>
+	<div class="table-responsive">
+		<table class="table"  jput="videoFileList">
+			<tr>
+				<td align="center">
+					<button class="btn btn-lg btn-primary"
+						id="{{filenameWithoutExtension(json.videoFile)}}"
+						onclick="startVideo('{{json.videoFile}}','{{normalizeFileName(json.videoFile)}}')">
+						{{filenameWithoutExtension(json.videoFile)}}</button> 
+						<span class="label label-info" id="{{normalizeFileName(json.videoFile)}}_message"></span>
 				</td>
-				</tr>
-</table>
+			</tr>
+		</table>
 
-<table jput="t_template">
- <tbody jput="tbody_template" >
-     <tr>
-         <td align="center">
-         	<button class="btn btn-lg btn-primary" id="id1"
-					onclick="startVideo('1.mp4','1', 'rest/start-video?file=1.mp4')">
-				{{videoFile}}</button>
-         </td>
-     </tr>
- </tbody>
-</table>
-
-
-
-<table>
- <tbody id="tbody">
- </tbody>
-</table>
-
-
-</div>
+	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="js/jquery.min.js"></script>
-	<script src="js/jput.min.js"></script>
+	<script src="js/jput-2.js"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.min.js"/></script>
-		
+	<script src="js/bootstrap.min.js" /></script>
+
 	<!-- My JS file -->
+	<script src="js/config.js"></script>
 	<script src="js/minimal-video-dj.js"></script>
 
-
-
 </body>
-
 </html>

@@ -2,6 +2,8 @@ package com.ipuppyp.minimalvideodj.application.configuration;
 
 import java.nio.file.Paths;
 
+import org.minimal.video.dj.facade.MinimalVideoDjFacade;
+import org.minimal.video.dj.facade.MinimalVideoDjRestFacade;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,16 @@ public class SpringConfigurationService {
 	@Value("${video_files_path}")
 	private String videoFilesPath;
 
+	@Value("${get-video-file-list-url}")
+	private String getVideoFileListUrl;
+	
+	@Value("${start-video-url}")
+	private String startVideoUrl;
+	
+	@Value("${stop-video-url}")
+	private String stopVideoUrl;
+
+	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -34,4 +46,10 @@ public class SpringConfigurationService {
 	public FileService fileService() {
 		return new DefaultFileService(Paths.get(videoFilesPath));
 	}
+	
+	@Bean
+	public MinimalVideoDjFacade facade() {
+		return new MinimalVideoDjRestFacade(getVideoFileListUrl, startVideoUrl, stopVideoUrl);
+	}
+
 }

@@ -45,6 +45,7 @@ public class VlcjFrame {
 		mediaPlayer = mediaPlayerComponent.getMediaPlayer();
 		mediaPlayer.setFullScreenStrategy(new DefaultAdaptiveRuntimeFullScreenStrategy(frame));
 		mediaPlayer.setRepeat(true);
+		mediaPlayer.setVolume(0);
 		frame.setContentPane(mediaPlayerComponent);
 		frame.setVisible(true);
 		mediaPlayer.setFullScreen(true);

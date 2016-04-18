@@ -43,7 +43,7 @@ public class MinimalVideoDjRestFacade implements MinimalVideoDjFacade {
 			Gson gson = new Gson();
 			return gson.fromJson(downloadJson(url), resultType);
 		} catch (JsonSyntaxException | IOException e) {
-			throw new RestException();
+			throw new RestException(e);
 		}
 	}
 

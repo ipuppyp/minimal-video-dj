@@ -22,9 +22,9 @@
 </head>
 <body>
 	<div class="table-responsive">
-		<table class="table"  jput="videoFileList">
+		<table class="table" jput="videoFileList" >
 			<tr>
-				<td align="center">
+				<td class="text-center">
 					<button class="btn btn-lg btn-primary"
 						id="{{filenameWithoutExtension(json.videoFile)}}"
 						onclick="startVideo('{{json.videoFile}}','{{normalizeFileName(json.videoFile)}}')">

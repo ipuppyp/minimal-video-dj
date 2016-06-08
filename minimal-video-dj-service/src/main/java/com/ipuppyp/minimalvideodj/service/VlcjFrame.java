@@ -92,6 +92,7 @@ public class VlcjFrame {
 			left.setPreferredSize(new Dimension(actualWest.width + adjustment.getLeft(), 0));
 			top.setPreferredSize(new Dimension(0, actualNorth.height + adjustment.getTop()));
 			bottom.setPreferredSize(new Dimension(0, actualSouth.height + adjustment.getBottom()));
+		}
 		right.removeAll(); // TODO: find a better solution
 		frame.revalidate();
 		frame.repaint();
@@ -99,7 +100,6 @@ public class VlcjFrame {
 		preferencesService.storeLeftBorder(left.getPreferredSize().width);
 		preferencesService.storeTopBorder(top.getPreferredSize().height);
 		preferencesService.storeBottomBorder(bottom.getPreferredSize().height);
-		}
 	}
 
 	private void setFullScreen(JFrame frame) {

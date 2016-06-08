@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ipuppyp.minimalvideodj.service.tutorial.Adjustment;
+
 @RestController
 @RequestMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VideoApiController {
@@ -37,5 +39,8 @@ public class VideoApiController {
 		return facade.stopVideo();
 	}
 
-	
+	@RequestMapping("/adjust")
+	public @ResponseBody SimpleMessageResponse adjust(@RequestParam(value = "adjustment") Adjustment adjustment) {
+		return facade.adjust(adjustment);
+	}
 }

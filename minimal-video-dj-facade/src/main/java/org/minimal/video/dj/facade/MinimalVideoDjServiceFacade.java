@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ipuppyp.minimalvideodj.service.FileService;
 import com.ipuppyp.minimalvideodj.service.VideoService;
+import com.ipuppyp.minimalvideodj.service.tutorial.Adjustment;
 
 public class MinimalVideoDjServiceFacade implements MinimalVideoDjFacade {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MinimalVideoDjServiceFacade.class);
@@ -51,6 +52,20 @@ public class MinimalVideoDjServiceFacade implements MinimalVideoDjFacade {
 		catch (Exception ex) {
 			response.setMessage("Error: " + ex.getMessage());
 			LOGGER.error("Exception on stopping video: ", ex);
+		}
+		return response;
+	}
+	
+	@Override
+	public SimpleMessageResponse adjust(Adjustment adjustment) {
+		SimpleMessageResponse response = new SimpleMessageResponse(); 
+		try {
+			videoService.adjust(adjustment);
+			response.setMessage(adjustment + " adjustment OK.");
+		}
+		catch (Exception ex) {
+			response.setMessage("Error: " + ex.getMessage());
+			LOGGER.error("Exception on adjusting: ", ex);
 		}
 		return response;
 	}

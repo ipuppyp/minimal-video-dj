@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Video portal</title>
+<meta name="viewport"
+	content="width = device-width, initial-scale = 1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
+      <script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+
+</head>
+<body>
+	<table class="table text-center">
+		<tr>
+			<td style="width:30%" class="danger">&nbsp;</td>
+			<td style="width:30%" class="warning"><a onclick="adjust('MOVE_UP')" href="#">UP</a></td>
+			<td style="width:30%" class="danger">&nbsp;</td>
+		</tr>	
+		<tr>
+			<td class="warning"><a onclick="adjust('MOVE_LEFT')" href="#">LEFT</a></td>
+			<td class="warning">
+				<a onclick="adjust('ZOOM_IN')" href="#">ZOOM IN</a> / 
+				<a onclick="adjust('ZOOM_OUT')" href="#">ZOOM OUT</a>
+			</td>
+			<td class="warning"><a onclick="adjust('MOVE_RIGHT')" href="#">RIGHT</a></td>
+		</tr>	
+		<tr>
+			<td class="danger">&nbsp;</td>
+			<td class="warning"><a onclick="adjust('MOVE_DOWN')" href="#">DOWN</a></td>
+			<td class="danger">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="danger">&nbsp;</td>
+			<td class="warning"><a onclick="adjust('RESET')" href="#">RESET</a></td>
+			<td class="danger"> &nbsp;</td>
+		</tr>
+		<tr>
+			<td class="danger">&nbsp;</td>
+			<td class="warning"><a onclick="adjust('TOGGLE_FULL_SCREEN')" href="#">TOGGLE_FULL_SCREEN</a></td>
+			<td class="danger"> &nbsp;</td>
+			
+		</tr>	
+		
+
+	</table>
+	<div id="menu" class="text-center"><a href="/">Home</a></div>
+	<div id="result" class="btn-success"></div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jput-2.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js" /></script>
+
+	<!-- My JS file -->
+	<script src="js/config.js"></script>
+	<script src="js/page-js/adjustment.js"></script>
+
+</body>
+</html>

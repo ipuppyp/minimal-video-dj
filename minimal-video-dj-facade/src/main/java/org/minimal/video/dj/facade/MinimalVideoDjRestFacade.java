@@ -12,17 +12,20 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.ipuppyp.minimalvideodj.service.tutorial.Adjustment;
 
 public class MinimalVideoDjRestFacade implements MinimalVideoDjFacade {
 	private final String getVideoFileListUrl;
 	private final String startVideoUrl;
 	private final String stopVideoUrl;
+	private final String adjustUrl;
 
-	public MinimalVideoDjRestFacade(String getVideoFileListUrl, String startVideoUrl, String stopVideoUrl) {
+	public MinimalVideoDjRestFacade(String getVideoFileListUrl, String startVideoUrl, String stopVideoUrl, String adjustUrl) {
 		super();
 		this.getVideoFileListUrl = getVideoFileListUrl;
 		this.startVideoUrl = startVideoUrl;
 		this.stopVideoUrl = stopVideoUrl;
+		this.adjustUrl = adjustUrl;
 	}
 
 	public VideoFileListResponse getVideoFileList() {
@@ -30,13 +33,19 @@ public class MinimalVideoDjRestFacade implements MinimalVideoDjFacade {
 	}
 
 	public SimpleMessageResponse startVideo(String file) {
-		return callRestApi(startVideoUrl, SimpleMessageResponse.class);
+		return callRestApi(startVideoUrl + "?file=" + file, SimpleMessageResponse.class);
 	}
 
 	@Override
 	public SimpleMessageResponse stopVideo() {
 		return callRestApi(stopVideoUrl, SimpleMessageResponse.class);
 	}
+
+	@Override
+	public SimpleMessageResponse adjust(Adjustment adjustment) {
+		return callRestApi(adjustUrl + "?adjustment=" + adjustment, SimpleMessageResponse.class);
+	}
+
 
 	private <T> T callRestApi(String url, Class<T> resultType) {
 		try {
@@ -50,5 +59,8 @@ public class MinimalVideoDjRestFacade implements MinimalVideoDjFacade {
 	private JsonObject downloadJson(String urlParameter) throws MalformedURLException, IOException {
 		return new JsonParser().parse(new InputStreamReader(new URL(urlParameter).openStream())).getAsJsonObject();
 	}
+
+
+
 
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class InfoController {
 
 	@RequestMapping("/get-info")
-	public @ResponseBody String getVideoFileList() throws UnknownHostException {
+	public @ResponseBody String getInfo() throws UnknownHostException {
 		return InetAddress.getLocalHost().getHostAddress();
 	}
 

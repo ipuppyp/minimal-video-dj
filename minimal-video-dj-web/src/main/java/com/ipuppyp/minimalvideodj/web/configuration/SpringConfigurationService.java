@@ -1,6 +1,7 @@
 package com.ipuppyp.minimalvideodj.web.configuration;
 
 import java.nio.file.Paths;
+import java.util.prefs.Preferences;
 
 import org.minimal.video.dj.facade.MinimalVideoDjServiceFacade;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import com.ipuppyp.minimalvideodj.service.BuiltInPerferencesService;
 import com.ipuppyp.minimalvideodj.service.DefaultFileService;
 import com.ipuppyp.minimalvideodj.service.VlcjVideoService;
 
@@ -26,7 +28,9 @@ public class SpringConfigurationService {
 
 	@Bean
 	public MinimalVideoDjServiceFacade facade() {
-		return new MinimalVideoDjServiceFacade(new DefaultFileService(Paths.get(videoFilesPath)), new VlcjVideoService());
+		return new MinimalVideoDjServiceFacade(new DefaultFileService(Paths.get(videoFilesPath)), 
+				new VlcjVideoService(new BuiltInPerferencesService
+						(Preferences.userNodeForPackage(DefaultFileService.class))));
 	}
 
 	

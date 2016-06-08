@@ -1,16 +1,20 @@
 $(document).ready(function() {
-	$.ajax({
-		url : gOptions.getVideoFileListUrl
-	}).then(function(data) {
-		var videoFileList = [];
-		for ( var i in data.videoFileList) {
-			videoFileList.push({
-				"videoFile" : data.videoFileList[i]
-			});
-		}
-		jPut.videoFileList.data = videoFileList;
-	});
+	showVideoFileList();
+	showFooter();
 });
+
+
+function showVideoFileList(){$.ajax({
+	url : gOptions.getVideoFileListUrl
+}).then(function(data) {
+	var videoFileList = [];
+	for ( var i in data.videoFileList) {
+		videoFileList.push({
+			"videoFile" : data.videoFileList[i]
+		});
+	}
+	jPut.videoFileList.data = videoFileList;
+});}
 
 function startVideo(fileName, id) {
 	$("button").removeClass("btn-danger");
@@ -28,6 +32,15 @@ function startVideo(fileName, id) {
 				$("#" + id).removeClass("btn-success");
 				$("#" + id).addClass("btn-primary");
 			}, 4000);
+		}
+	});
+}
+
+function showFooter(){
+	$.ajax({
+		url : gOptions.getInfoUrl,
+		success : function(result) {
+			$("#footer").html("IP ADDRESS: " + result);			
 		}
 	});
 }

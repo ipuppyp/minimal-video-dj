@@ -40,7 +40,7 @@ function showFooter(){
 	$.ajax({
 		url : gOptions.getInfoUrl,
 		success : function(result) {
-			$("#footer").html("IP ADDRESS: " + result);			
+			$("#footer").html("IP ADDRESSES: " + result);			
 		}
 	});
 }

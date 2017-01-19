@@ -9,3 +9,15 @@ function adjust(adjustment) {
 		}
 	});
 }
+
+function stopVideo() {
+	$.ajax({
+		url : gOptions.stopVideoUrl,
+		success : function(result) {
+			$("#result").html(result.message);
+			setTimeout(function() {
+				$("#result").html("");
+			}, 4000);
+		}
+	});
+}

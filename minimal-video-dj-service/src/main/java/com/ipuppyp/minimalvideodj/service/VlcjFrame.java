@@ -69,29 +69,13 @@ public class VlcjFrame {
 	public void adjust(Adjustment adjustment) {
 		init();
 		if (adjustment == RESET) {
-			right.setPreferredSize(new Dimension());
-			left.setPreferredSize(new Dimension());
-			top.setPreferredSize(new Dimension());
-			bottom.setPreferredSize(new Dimension());
+			resetFrame();
 		}	
 		else if (adjustment == Adjustment.TOGGLE_FULL_SCREEN) {
-			frame.dispose();
-			boolean newUndecoratedState = !frame.isUndecorated();
-			frame.setUndecorated(newUndecoratedState);
-			if (!newUndecoratedState) {				
-				setFullScreen(frame);
-			}
-			frame.setVisible(true); 
+			toggleFullscreenFrame(); 
 		}
 		else {
-			Dimension actualEast = right.getPreferredSize();
-			Dimension actualWest = left.getPreferredSize();
-			Dimension actualNorth = top.getPreferredSize();
-			Dimension actualSouth = bottom.getPreferredSize();
-			right.setPreferredSize(new Dimension(actualEast.width + adjustment.getRight(), 0));
-			left.setPreferredSize(new Dimension(actualWest.width + adjustment.getLeft(), 0));
-			top.setPreferredSize(new Dimension(0, actualNorth.height + adjustment.getTop()));
-			bottom.setPreferredSize(new Dimension(0, actualSouth.height + adjustment.getBottom()));
+			moveOrZoomFrame(adjustment);
 		}
 		right.removeAll(); // TODO: find a better solution
 		frame.revalidate();
@@ -100,6 +84,34 @@ public class VlcjFrame {
 		preferencesService.storeLeftBorder(left.getPreferredSize().width);
 		preferencesService.storeTopBorder(top.getPreferredSize().height);
 		preferencesService.storeBottomBorder(bottom.getPreferredSize().height);
+	}
+
+	private void moveOrZoomFrame(Adjustment adjustment) {
+		Dimension actualEast = right.getPreferredSize();
+		Dimension actualWest = left.getPreferredSize();
+		Dimension actualNorth = top.getPreferredSize();
+		Dimension actualSouth = bottom.getPreferredSize();
+		right.setPreferredSize(new Dimension(actualEast.width + adjustment.getRight(), 0));
+		left.setPreferredSize(new Dimension(actualWest.width + adjustment.getLeft(), 0));
+		top.setPreferredSize(new Dimension(0, actualNorth.height + adjustment.getTop()));
+		bottom.setPreferredSize(new Dimension(0, actualSouth.height + adjustment.getBottom()));
+	}
+
+	private void toggleFullscreenFrame() {
+		frame.dispose();
+		boolean newUndecoratedState = !frame.isUndecorated();
+		frame.setUndecorated(newUndecoratedState);
+		if (!newUndecoratedState) {				
+			setFullScreen(frame);
+		}
+		frame.setVisible(true);
+	}
+
+	private void resetFrame() {
+		right.setPreferredSize(new Dimension());
+		left.setPreferredSize(new Dimension());
+		top.setPreferredSize(new Dimension());
+		bottom.setPreferredSize(new Dimension());
 	}
 
 	private void setFullScreen(JFrame frame) {
